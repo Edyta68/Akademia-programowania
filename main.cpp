@@ -416,20 +416,36 @@ private:
 				{
 					if (betOn)
 					{
-						pot += betOn;
-						players[k % players_count].money -= betOn;
-						cout << "\t++ " << players[k % players_count].name << " calls!" << endl;
-						players[k % players_count].goodToGo = 1;
+                        if(players[k % players_count].money>=betOn)
+                        {
+                            pot += betOn;
+                            players[k % players_count].money -= betOn;
+                            cout << "\t++ " << players[k % players_count].name << " calls!" << endl;
+                            players[k % players_count].goodToGo = 1;
+                        }
+                        else
+                        {
+                            players [k % players_count].round=0;
+                            cout << "\t- " << players[k % players_count].name << " flops..." << endl;
+                        }
 					}
 					else
 					{
-						bet = (rand() % (players[k % players_count].money / 3) + 10);
-						pot += bet;
-						players[k % players_count].money -= bet;
-						cout << '\a';
-						cout << "\t+ " << players[k % players_count].name << " bets " << bet << "$" << endl;
-						betOn = bet;
-						players[k % players_count].goodToGo = 1;
+                        bet = (rand() % (players[k % players_count].money / 3) + 10);
+                        if(bet>0)
+                        {
+                            pot += bet;
+                            players[k % players_count].money -= bet;
+                            cout << '\a';
+                            cout << "\t+ " << players[k % players_count].name << " bets " << bet << "$" << endl;
+                            betOn = bet;
+                            players[k % players_count].goodToGo = 1;
+                        }
+                        else
+                        {
+                            players [k % players_count].round=0;
+                            cout << "\t- " << players[k % players_count].name << " flops..." << endl;
+                        }
 					}
 				}
 				_sleep(1);
@@ -487,10 +503,19 @@ private:
 					}
 					else
 					{
-						pot += betOn;
-						players[k % players_count].money -= betOn;
-						cout << "\t++ " << players[k % players_count].name << " calls!" << endl;
-						players[k % players_count].goodToGo = 1;
+
+                        if(players[k % players_count].money>=betOn)
+                        {
+                            pot += betOn;
+                            players[k % players_count].money -= betOn;
+                            cout << "\t++ " << players[k % players_count].name << " calls!" << endl;
+                            players[k % players_count].goodToGo = 1;\
+						}
+						else
+						{
+                            players [k % players_count].round=0;
+                            cout << "\t- " << players[k % players_count].name << " flops..." << endl;
+						}
 					}
 				}
 			}
