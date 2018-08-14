@@ -75,10 +75,10 @@ public:
 				cards[i * ranks_count + j].rank = j;
 			}
 		}
-		suits[0] = "D";
-		suits[1] = "S";
-		suits[2] = "H";
-		suits[3] = "C";
+		suits[0] = "\xE2\x99\xA6";
+		suits[1] = "\xE2\x99\xA0";
+		suits[2] = "\xE2\x99\xA5";
+		suits[3] = "\xE2\x99\xA3";
 
 		ranks[0] = "2";
 		ranks[1] = "3";
@@ -778,7 +778,9 @@ private:
 			if (oneLeft())
 			{
 				roundWinner = getWinner();
-				addWinnigNote();
+				std::cout << std::endl;
+                std::cout << players[roundWinner].name << " wins $" << pot << " with ";
+                players[roundWinner].money += pot;
 				i++;
 				continue;
 			}
@@ -792,7 +794,9 @@ private:
 			if (oneLeft())
 			{
 				roundWinner = getWinner();
-				addWinnigNote();
+				std::cout << std::endl;
+                std::cout << players[roundWinner].name << " wins $" << pot << " with ";
+                players[roundWinner].money += pot;
 				i++;
 				continue;
 			}
@@ -806,7 +810,9 @@ private:
 			if (oneLeft())
 			{
 				roundWinner = getWinner();
-				addWinnigNote();
+                std::cout << std::endl;
+                std::cout << players[roundWinner].name << " wins $" << pot << " with ";
+                players[roundWinner].money += pot;
 
 				i++;
 				continue;
@@ -845,7 +851,7 @@ private:
 
 	void addWinnigNote()
 	{
-        std::cout << std::endl;
+            std::cout << std::endl;
 			std::cout << players[roundWinner].name << " wins $" << pot << " with ";
 			if (maxPoints < 30)
 				std::cout << "HIGH CARD";
@@ -882,6 +888,7 @@ private:
 			}
 
 			players[roundWinner].money += pot;
+
 
 	}
 };
